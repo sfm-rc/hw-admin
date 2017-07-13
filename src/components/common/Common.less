@@ -1,0 +1,36 @@
+// 通用组件样式集合
+
+.normal {
+    margin-top: 20px;
+}
+.search, .normal {
+    .ant-form-item {
+        margin-right: 25px;
+        margin-bottom: 15px;
+        > label:after {
+            content: ":";
+            position: relative;
+            top: -.5px;
+            margin: 0 8px 0 2px;
+        }
+    }
+}
+
+.create {
+    text-align: right;
+
+    > button {
+        margin: 20px 0;
+    }
+
+    &:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+}
+
+.uploadImg{
+    max-width: 300px;
+    max-height: 400px;
+}
