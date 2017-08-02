@@ -27,9 +27,10 @@ const RadioGroup = Radio.Group;
 // 依赖 config 主题生成react 组件函数
 const FeatureSet = (config) => {
     
-    let tableFeature = React.createClass({
+    let TableFeature = React.createClass({
         getInitialState: function(){
             return {
+                tableConfig: {},
                 columns: [],
                 resultList: [],
                 loading: false,
@@ -45,7 +46,8 @@ const FeatureSet = (config) => {
         componentWillMount: function(){
             this.setState({
                 loading: true,
-                columns: this.dealConfigColumns(config.columns)
+                columns: this.dealConfigColumns(config.columns),
+                tableConfig: config.tableConfig||{},
             });
         },
 
@@ -65,9 +67,17 @@ const FeatureSet = (config) => {
                     }
                 }
 
-                table = <Table dataSource={this.state.resultList} columns={this.state.columns} loading={this.state.loading} pagination={pagination} bordered/>;
+                table = <Table dataSource={this.state.resultList} 
+                columns={this.state.columns} loading={this.state.loading} 
+                pagination={pagination} bordered 
+                {...this.state.tableConfig}
+                />;
             }else{
-                table = <Table dataSource={this.state.resultList} columns={this.state.columns} loading={this.state.loading} bordered/>;
+                table = <Table dataSource={this.state.resultList} 
+                columns={this.state.columns} 
+                loading={this.state.loading} bordered 
+                {...this.state.tableConfig}
+                />;
             }
             
             return  <div className={this.props.className}>
@@ -89,6 +99,9 @@ const FeatureSet = (config) => {
                     dataIndex: item.dataIndex,
                     key: item.dataIndex,
                     width: item.width
+                }
+                if(item.fixed){
+                    column.fixed = item.fixed;
                 }
                 
                 if( item.type === 'operate' ){
@@ -434,7 +447,7 @@ const FeatureSet = (config) => {
 
     switch (config.type){
         case 'tableList':
-            return tableFeature;
+            return TableFeature;
             break;
 
         case 'graphList':
@@ -450,7 +463,7 @@ const FeatureSet = (config) => {
             break;
 
         default:
-            return tableFeature;
+            return TableFeature;
             break;
     }
 }

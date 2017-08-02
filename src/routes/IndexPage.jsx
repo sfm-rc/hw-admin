@@ -11,6 +11,7 @@ import Sider from '../components/sider/Sider';
 import Main from '../components/main/Main';
 
 import Login from '../components/login/Login';
+import {Layout} from 'antd';
 
 //const components = config.main.components;
 const headerInfo = {
@@ -30,7 +31,66 @@ const IndexInfo = {
     loginUrl: config.userInfo.loginUrl
 }
 
-const App = (props) => {
+
+class App extends React.Component{
+    constructor(props){
+        super(props);
+    }
+
+    state = {
+        collapsed: false,
+    };
+
+    onCollapse = (collapsed) => {
+        console.log(collapsed);
+        this.setState({ collapsed });
+    }
+
+    render(){
+        const {props} = this;
+        let featureId = props.params.FeatureId || config.sider.selectedKey;
+
+        let featureInfo = {
+            featureId: featureId,
+            params: props.params.params,
+
+            feature: config.main.components[featureId].component,
+            title: config.main.components[featureId].title,
+        }
+        
+        if(IndexInfo.permission){
+            return  <Layout style={{minHeight: '100%'}}>
+                        <Layout.Header>
+                            <Header {...headerInfo}/>
+                        </Layout.Header>
+                        <Layout>
+                            <Layout.Sider collapsible
+                                        collapsed={this.state.collapsed}
+                                        onCollapse={this.onCollapse}>
+                                <Sider {...siderInfo} selectedKey={featureId}/>
+                            </Layout.Sider>
+                            <Layout>
+                                <Layout.Content>
+                                    <Main {...mainInfo} {...featureInfo}/>
+                                </Layout.Content>       
+                                <Layout.Footer style={{ textAlign: 'center' }}>
+                                    Outdoor cloud platform ©2017 Created Jing Gang
+                                </Layout.Footer>  
+                            </Layout>   
+                        </Layout>
+                    </Layout>
+        }else{
+            return  <div className="nopermission">
+                        <Login loginUrl={IndexInfo.loginUrl}/>
+                    </div>
+        }
+
+    }
+
+
+}
+
+const App1 = (props) => {
 
         let featureId = props.params.FeatureId || config.sider.selectedKey;
 
@@ -43,11 +103,22 @@ const App = (props) => {
         }
         
         if(IndexInfo.permission){
-            return  <div>
-                        <Header {...headerInfo}/>
-                        <Sider {...siderInfo} selectedKey={featureId}/>
-                        <Main {...mainInfo} {...featureInfo}/>
-                    </div>
+            return  <Layout>
+                        <Layout.Header>
+                            <Header {...headerInfo}/>
+                        </Layout.Header>
+                        <Layout>
+                            <Layout.Sider collapsible
+                                        collapsed={this.state.collapsed}
+                                        onCollapse={this.onCollapse}>
+                                <Sider {...siderInfo} selectedKey={featureId}/>
+                            </Layout.Sider>
+                            <Layout.Content>
+                                <Main {...mainInfo} {...featureInfo}/>
+                            </Layout.Content>
+                            
+                        </Layout>
+                    </Layout>
         }else{
             return  <div className="nopermission">
                         <Login loginUrl={IndexInfo.loginUrl}/>

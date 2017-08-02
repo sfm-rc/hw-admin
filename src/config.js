@@ -28,69 +28,108 @@
 
 const Config = {
     header: {
-        title: '测试配置管理后台',
+        title: '户外云平台',
         icon: 'appstore',
         style: {
-            backgroundColor: '#F5F5F5',
-            color: '#666'
+            // backgroundColor: 'rgb(51, 51, 51)',
+            color: 'white'
         },
         menu: [
-            {title: '集合管理', key: 'bigset'}
+            // {title: '集合管理', key: 'bigset'}
         ]
     },
 
     sider: {
         menu: [
             {
-                title: 'Table数据与功能展示',
-                key: 'table',
-                icon: 'bars',
+                title: '俱乐部管理',
+                key: 'admin-com',
+                icon: 'team',
+            },
+            {
+                title: '活动管理',
+                key: 'activity-com',
+                icon: 'environment',
+            },
+            {
+                title: '活动报名',
+                key: 'activity-join-com',
+                icon: 'solution',
+            },
+            {
+                title: '会员管理',
+                key: 'user-com',
+                icon: 'user',
+            },
+            {
+                title: '新增栏目',
+                key: 'note-com',
+                icon: 'file',
                 items: [
-                    {title: 'table数据展示前端分页', key: 'Feature1-1'},
-                    {title: 'table数据展示接口分页', key: 'Feature1-1-1'},
-                    {title: 'table数据展示项2', key: 'Feature1-2'},
-                    {title: 'table数据搜索数据操作', key: 'Feature1-3'},
-                    {title: 'table数据增加数据操作', key: 'Feature1-4'},
-                    {title: 'table数据修改数据操作', key: 'Feature1-5'},
-                    {title: 'table数据删除数据操作', key: 'Feature1-6'}
+                    {title: '旅游分享', key: 'Feature1-1'},
+                    {title: '每周一星', key: 'Feature1-1'},
                 ]
             },
             {
-                title: 'simple对象数据与功能展示',
-                key: 'object',
-                icon: 'bars',
-                items: [
-                    {title: 'simple对象数据展示项', key: 'Feature2-1'},
-                    {title: 'simple对象数据修改操作', key: 'Feature2-2'}
-                ]
+                title: '个人中心',
+                key: 'center-com',
+                icon: 'user',
             },
-            {
-                title: '数据可视化功能展示',
-                key: 'echarts',
-                icon: 'bars',
-                items: [
-                    {title: 'echarts 数据可视化1', key: 'Feature3-1'},
-                    {title: 'echarts 数据可视化2', key: 'Feature3-2'},
-                    {title: 'echarts 数据可视化3', key: 'Feature3-3'}
-                ]
+                        {
+                title: '帮助',
+                key: 'help-com',
+                icon: 'user',
             },
-            {
-                title: '综合功能数据展示',
-                key: 'complex',
-                icon: 'bars',
-                items: [
-                    {title: '综合数据展示', key: 'Feature4-1'}
-                ]
-            },
-            {
-                title: '综合自定义操作项目',
-                key: 'customOperate',
-                icon: 'bars',
-                items: [
-                    {title: '富文本编辑功能展现', key: 'Feature5-1'},
-                    {title: '自组装FromUI组件方式', key: 'Feature5-2'}
-                ]
-            },
+            // {
+            //     title: 'Table数据与功能展示',
+            //     key: 'table',
+            //     icon: 'bars',
+            //     items: [
+            //         {title: 'table数据展示前端分页', key: 'Feature1-1'},
+            //         {title: 'table数据展示接口分页', key: 'Feature1-1-1'},
+            //         {title: 'table数据展示项2', key: 'Feature1-2'},
+            //         {title: 'table数据搜索数据操作', key: 'Feature1-3'},
+            //         {title: 'table数据增加数据操作', key: 'Feature1-4'},
+            //         {title: 'table数据修改数据操作', key: 'Feature1-5'},
+            //         {title: 'table数据删除数据操作', key: 'Feature1-6'}
+            //     ]
+            // },
+            // {
+            //     title: 'simple对象数据与功能展示',
+            //     key: 'object',
+            //     icon: 'bars',
+            //     items: [
+            //         {title: 'simple对象数据展示项', key: 'Feature2-1'},
+            //         {title: 'simple对象数据修改操作', key: 'Feature2-2'}
+            //     ]
+            // },
+            // {
+            //     title: '数据可视化功能展示',
+            //     key: 'echarts',
+            //     icon: 'bars',
+            //     items: [
+            //         {title: 'echarts 数据可视化1', key: 'Feature3-1'},
+            //         {title: 'echarts 数据可视化2', key: 'Feature3-2'},
+            //         {title: 'echarts 数据可视化3', key: 'Feature3-3'}
+            //     ]
+            // },
+            // {
+            //     title: '综合功能数据展示',
+            //     key: 'complex',
+            //     icon: 'bars',
+            //     items: [
+            //         {title: '综合数据展示', key: 'Feature4-1'}
+            //     ]
+            // },
+            // {
+            //     title: '综合自定义操作项目',
+            //     key: 'customOperate',
+            //     icon: 'bars',
+            //     items: [
+            //         {title: '富文本编辑功能展现', key: 'Feature5-1'},
+            //         {title: '自组装FromUI组件方式', key: 'Feature5-2'}
+            //     ]
+            // },
 
             // 格式示例
             // {
@@ -132,6 +171,26 @@ const Config = {
 
     main: {
         components: {
+            'admin-com': {
+                title: '俱乐部会员管理，仅超级管理员可见',
+                component: require('./components/feature/Feature1-1')
+            }, 
+            'activity-com': {
+                title: '活动管理',
+                component: require('./components/feature/feature-activity')
+            }, 
+            'activity-join-com': {
+                title: '活动报名',
+                component: require('./components/feature/feature-activity-join')
+            }, 
+            'user-com': {
+                title: '会员管理',
+                component: require('./components/feature/Feature1-1')
+            }, 
+            'note-com': {
+                title: '游记分享',
+                component: require('./components/feature/Feature1-1')
+            }, 
             'bigset': {
                 title: 'bigset 测试',
                 component: require('./components/feature/Feature1-1')

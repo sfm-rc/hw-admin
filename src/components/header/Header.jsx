@@ -10,7 +10,7 @@ const HeadMenuItemCreat  = (items) => {
 
 function Header(props){
     return  <div style={props.style} className="header">
-                <h2>
+                <h2 style={{color:'inherit'}}>
                     <Icon className="icon" type={props.icon} />
                     {props.title}
                 </h2>

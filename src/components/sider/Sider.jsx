@@ -1,12 +1,11 @@
 import React from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Button } from 'antd';
 import { Link } from 'dva/router';
 
 const MenuItemCreat  = (items) => {
         return items.map(function(item){
+            let title = <span>{item.icon ? (<Icon type={item.icon} />): ''}<span>{item.title}</span></span>;
             if(item.items){
-                let title = <span>{item.icon ? (<Icon type={item.icon} />): ''}<span>{item.title}</span></span>;
-
                 return  <Menu.SubMenu key={item.key} title={title}>
                             { 
                                 MenuItemCreat(item.items)
@@ -14,17 +13,18 @@ const MenuItemCreat  = (items) => {
                         </Menu.SubMenu>
             }else{
                 return  <Menu.Item key={item.key}>
-                            <Link to={'/'+item.key}>{item.title}</Link>
+                            <Link to={'/'+item.key}>{title}</Link>
                         </Menu.Item>
             }
         });
 };
 
+
 function Sider(props){
     return  <div className="sider" style={props.style}>
                <Menu defaultOpenKeys={props.openKeys}
                     selectedKeys={[props.selectedKey]}
-                    mode="inline">
+                    mode="inline" theme="dark" >
                     { 
                         MenuItemCreat(props.menu)
                     }
