@@ -59,6 +59,7 @@ const FeatureSet = (config) => {
                 const pagination = {
                     total: this.state.total,
                     pageSize: this.state.pageSize,
+                    current: this.state.current,
                     onChange: function(num){
                         self.setState({
                             loading: true
@@ -226,11 +227,11 @@ const FeatureSet = (config) => {
                 loading: true
             });
             
-            config.Retrieve(info, function(list){
-                self.setState({
+            config.Retrieve(info, function(list, info){
+                self.setState(Object.assign({
                     loading: false,
                     resultList: list
-                });
+                }, info));
             });
         },
         
@@ -304,6 +305,7 @@ const FeatureSet = (config) => {
                     loading: false,
                     resultList: list,
                     total: info.total,
+                    current: info.current,
                     pageSize: info.pageSize||10,
                 });
             });

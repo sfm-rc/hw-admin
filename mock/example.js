@@ -204,28 +204,14 @@ module.exports = {
     },
 
 
-    'GET /api/activity/list': function (req, res) {
-        setTimeout(function () {
-            res.json({
-                success: true,
-                data: [{
-                    id:"1",
-                    title: "徽杭古道两日游",
-                    image: "https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2106183011,3024965378&fm=80&w=179&h=119&img.JPEG",
-                    detail_url: "http://piao.ctrip.com/dest/t55304.html?allianceid=4897&sid=965689&ouid=t55304",
-                    on_date:"2016-06-29 10:27:00",
-                    end_join_date:"2016-06-29 10:27:00",
-                    site: "安徽",
-                    type: "露营",
-                    leader: "金刚",
-                    limit:199,
-                    score: 10,
-                    seq:1,
-                    is_success: 0
-                }],
-            });
-        }, 500);
-    },
+    'POST /hw/activity/list_search': 
+    'http://127.0.0.1:3000',
+
+    'POST /hw/activity/add': 
+    'http://127.0.0.1:3000',
+
+    'POST /hw/activity/update': 
+    'http://127.0.0.1:3000',
 
     'GET /api/activity_join/list': function (req, res) {
         setTimeout(function () {

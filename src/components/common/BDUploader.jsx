@@ -10,11 +10,12 @@ import React from 'react';
 import { Button, Icon, message } from 'antd';
 import baidubce from 'bce-sdk-js';
 
+const bucket = 'hw-123';
 let config = {
-    endpoint: 'http://bj.bcebos.com',         //传入Bucket所在区域域名
+    endpoint: 'http://su.bcebos.com',         //传入Bucket所在区域域名
     credentials: {
-        ak: '******',          //您的AccessKey
-        sk: '******'           //您的SecretAccessKey
+        ak: '4b21a802dfa44680ae9953a71a5c86c8',          //您的AccessKey
+        sk: '396e7d6838594d58b95ff3cea3b30d45'           //您的SecretAccessKey
     }
 };
 
@@ -62,11 +63,12 @@ let BDUploader = React.createClass({
         let key = createKey(ext); // 保存到bos时的key，您可更改，默认以文件名作为key
         let mimeType = baidubce.MimeType.guess(ext);
 
-        client.putObjectFromBlob("mbrowser", key, file, {
+        client.putObjectFromBlob(bucket, key, file, {
             'Content-Type': /^text\//.test(mimeType)? mimeType+'; charset=UTF-8': mimeType
         }).then(function (res) {
             // 上传完成，添加您的代码
-            let imgUrl = config.endpoint+'/v1/mbrowser/'+key;
+            // let imgUrl = config.endpoint+`/v1/${bucket}/`+key;
+            let imgUrl = `http://hw-123.su.bcebos.com/${key}`
             console.log('上传成功', imgUrl);
             self.props.success&&self.props.success(imgUrl);
         }).catch(function (err) {
