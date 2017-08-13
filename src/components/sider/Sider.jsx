@@ -13,7 +13,7 @@ const MenuItemCreat  = (items) => {
                         </Menu.SubMenu>
             }else{
                 return  <Menu.Item key={item.key}>
-                            <Link to={'/'+item.key}>{title}</Link>
+                            <Link to={'/admin-hw/'+item.key}>{title}</Link>
                         </Menu.Item>
             }
         });
