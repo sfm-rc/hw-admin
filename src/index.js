@@ -19,6 +19,7 @@ const app = dva({
   onError(e) {
     message.error(e.message, ERROR_MSG_DURATION);
   },
+
 });
 
 // 2. Plugins
