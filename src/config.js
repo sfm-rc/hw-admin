@@ -28,6 +28,7 @@
 
 const Config = {
     header: {
+        permission: BaiduInfo.permission,
         title: '户外云平台',
         icon: 'appstore',
         style: {

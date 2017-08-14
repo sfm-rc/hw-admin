@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Demo</title>
+    <title>户外云平台</title>
     <link rel="stylesheet" href="index.css" />
 </head>
 <body>
@@ -11,9 +11,20 @@
 
 <script>
     // 自定义 后端渲染全局数据配置
+    function getCookie(name) {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+        return unescape(arr[2]);
+        else
+        return null;
+    }
+
+
     var BaiduInfo = {
-        permission: true,
-        loginUrl: 'https://www.baidu.com'
+        permission: getCookie('permission')==1?true:false,
+        name:  getCookie('name')
+
+        // loginUrl: 'https://www.baidu.com'
     };
 </script>
 <!-- 富文本编辑器类库 可自行添加 -->
