@@ -1,5 +1,5 @@
 import React from 'react';
-import { Affix, Menu, Icon } from 'antd';
+import { Affix, Menu, Icon, message } from 'antd';
 import { Link } from 'dva/router';
 import Reqwest from 'reqwest';
 
