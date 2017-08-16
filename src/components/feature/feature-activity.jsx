@@ -339,7 +339,7 @@ const conf = {
         data.registrate_end_time = data.registrate_end_time.unix()
         data.start_time = data.start_time.unix()
         data.end_time = data.end_time.unix();
-        data.admin_id = '1';
+        data.admin_id = getCookie('admin_id');
         data.success = 0;
         data.cur_num = 0;
         data.status = 'open';
@@ -467,7 +467,7 @@ const conf = {
             url: '/hw/activity/list_search',
             method:　'POST',
             data: JSON.stringify(Object.assign({
-                    "admin_id":"1",
+                    "admin_id":getCookie('admin_id'),
                     "pageIndex": num,
                     "limit": 10
                     }, params)),

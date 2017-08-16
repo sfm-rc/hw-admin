@@ -7,7 +7,7 @@ import IndexPage from './routes/IndexPage';
 export default function({ history }) {
     return (
         <Router history={history}>
-              <Route path="/" component={IndexPage} />  
+            <Route path="/" component={IndexPage} />  
             <Route path="/admin-hw" component={IndexPage} />
             <Route path="/admin-hw/:FeatureId(/:params)" component={IndexPage} />
         </Router>
