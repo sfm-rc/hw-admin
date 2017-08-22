@@ -70,27 +70,31 @@ const conf = {
     type: 'tableList', 
     
     // 初始化页面的数据 回调函数传入 items 列表
-    initData: function(callback){
+    // initData: function(callback){
 
-        // 接口调用数据形式
-        Reqwest({
-            url: '/api/activity_join/list',
-            data: {},
+    //     // 接口调用数据形式
+    //     Reqwest({
+    //         url: '/api/activity_join/list',
+    //         data: {},
 
-            type: 'json',
-            success: function (data) {
-                let list = data.data;
-                list.forEach(function(ele) {
-                    ele.key = ele.id;
-                });
-                callback(list);
-            }
-        });
+    //         type: 'json',
+    //         success: function (data) {
+    //             let list = data.data;
+    //             list.forEach(function(ele) {
+    //                 ele.key = ele.id;
+    //             });
+    //             callback(list);
+    //         }
+    //     });
            
-    },
+    // },
 
     tableConfig: {
         scroll: { x: 1500, y: 700 },
+    },
+
+    pageData: function(num, callback){
+        this.RequestData(Object.assign(this.RParams, {num}), callback);
     },
 
     columns: [
@@ -100,52 +104,63 @@ const conf = {
             type: 'string',
             width:30,
             fixed:'left'
-        }, {
-            title: '全名',
-            dataIndex: 'u_name',
-            type: 'string',
-            width:100,
-        }, {
-            title: '户外花名',
-            dataIndex: 'u_name_alias',
-            type: 'string',
-            width:100,
-        }, {
-            title: '性别',
-            dataIndex: 'u_sex',
-            type: 'string',
-            width:100,
-            render: (text, item)=><span>{text==1?'男':'女'}</span>
         }, 
         {
-            title: '手机',
-            dataIndex: 'u_mobile',
+            title: '活动ID',
+            dataIndex: 'activity_id',
+            type: 'string',
+            width:100
+        },
+        {
+            title: '活动名称',
+            dataIndex: 'title',
+            type: 'string',
+            width:100,
+        }, 
+        {
+            title: '全名',
+            dataIndex: 'user_name',
             type: 'string',
             width:100,
         },
         {
-            title: '付款截图',
-            dataIndex: 'u_pay_image',
-            type: 'image',
-            width:100,
-            render:(text, item)=><div style={{backgroundSize: 'contain',backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'top', height:'2rem',backgroundImage:`url(${text})`}} />
-        },{
-            title: '活动ID',
-            dataIndex: 'a_id',
-            type: 'string',
-            width:300
-        },{
-            title: '活动名称',
-            dataIndex: 'a_title',
+            title: '户外花名',
+            dataIndex: 'user_name_alias',
             type: 'string',
             width:100,
-        },{
-            title: '是否报名',
-            dataIndex: 'is_join',
+        },
+        {
+            title: '性别',
+            dataIndex: 'sex',
             type: 'string',
             width:100,
-            render:(text, item)=><span>{text==1?'是':'否'}</span>
+            render: (text, item)=>text==0?'女':'男'
+        },
+        {
+            title: '手机',
+            dataIndex: 'mobile',
+            type: 'string',
+            width:100        },
+        {
+            title: '付款金额',
+            dataIndex: 'down_payment',
+            type: 'string',
+            width:100,
+            render:(text, item)=>text/100.0
+        },
+        // {
+        //     title: '付款截图',
+        //     dataIndex: 'u_pay_image',
+        //     type: 'image',
+        //     width:100,
+        //     render:(text, item)=><div style={{backgroundSize: 'contain',backgroundRepeat: 'no-repeat',
+        //     backgroundPosition: 'top', height:'2rem',backgroundImage:`url(${text})`}} />
+        // },
+        {
+            title: '其他',
+            dataIndex: 'extra',
+            type: 'string',
+            width:100
         },
         {
             title: '操作',
@@ -153,11 +168,6 @@ const conf = {
             btns: [{
                 text: '更新',
                 type: 'update'
-            },{
-                text: '取消',
-                callback: function(item){
-                    console.log(item)
-                }
             }], // 可选
             fixed: 'right',
             width:100,
@@ -212,6 +222,68 @@ const conf = {
             defaultValue: false
         }
     ],
+    RParams:{
+
+    },
+
+    // 查询操作回调
+    Retrieve: function(data, callback){
+        this.RParams = data;
+        console.log(data);
+        data.num = 1;
+        this.RequestData(data, callback);
+
+        // Reqwest({
+        //     method:'POST',
+        //     url: '/hw/activity/list',
+        //     data: JSON.stringify({
+        //         id: data.id,
+        //     }),
+        //     type: 'json',
+        //     contentType: 'application/json',
+        //     success: function (data) {
+        //         let list = data.data;
+        //         let i = 0;
+        //         list.forEach(function(ele) {
+        //             ele.key = i++;
+        //         });
+
+        //         // 查询成功 传入列表数据
+        //         callback(list);
+        //     }
+        // });
+    },
+
+    RequestData: function(params, callback){
+        console.log('requestData:', params);
+        const {num} = params;
+
+        Reqwest({
+            url: '/hw/join/list_search',
+            method:　'POST',
+            data: JSON.stringify(Object.assign({
+                    "admin_id":getCookie('admin_id'),
+                    "pageIndex": num,
+                    "limit": 10
+                    }, params)),
+            type: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+                let list = data.data;
+                list.forEach(function(ele) {
+                    ele.key = ele.id;
+                    // ele.start_time =  moment(ele.start_time*1000).format('YYYY-MM-DD HH:mm');
+                    // ele.end_time =  moment(ele.end_time*1000).format('YYYY-MM-DD HH:mm');
+                    // ele.registrate_end_time =  moment(ele.registrate_end_time*1000).format('YYYY-MM-DD HH:mm');
+                });
+                callback(list, {
+                    total: data.pagination.total,
+                    current: num,
+                    pageSize: 10
+                });
+            }
+        });
+    }
 
 };
 

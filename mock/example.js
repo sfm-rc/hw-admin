@@ -213,10 +213,24 @@ module.exports = {
     'POST /hw/activity/update': 
     'http://127.0.0.1:3000',
 
+
+    'POST /hw/join/list_search': 
+    'http://127.0.0.1:3000',
+
+
     'POST /hw/admin/login': 
     'http://127.0.0.1:3000',
 
     'POST /hw/admin/logout': 
+    'http://127.0.0.1:3000',
+
+    'POST /hw/admin/list_search': 
+    'http://127.0.0.1:3000',
+
+    'POST /hw/admin/add': 
+    'http://127.0.0.1:3000',
+
+    'POST /hw/admin/update': 
     'http://127.0.0.1:3000',
 
     'GET /api/activity_join/list': function (req, res) {

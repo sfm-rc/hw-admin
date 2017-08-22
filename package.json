@@ -36,6 +36,7 @@
     "redbox-react": "^1.2.10"
   },
   "scripts": {
+    "install": "yarn install --ignore-engines",
     "start": "dora --plugins \"proxy,webpack,webpack-hmr\"",
     "build": "atool-build",
     "test": "atool-test-mocha ./src/**/*-test.js"

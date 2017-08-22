@@ -21,7 +21,7 @@ function Header(props){
                 // data.id=res.data.insertId;
                 if(res.code==0){
                     message.info('退出成功');
-                    setTimeout(()=>location.reload(), 1000);
+                    setTimeout(()=>location.href='/', 1000);
                 }
                 else{
                     message.warn('退出异常');

@@ -224,6 +224,11 @@ const conf = {
             type: 'string',
             width:100,
         }, {
+            title: '俱乐部名称',
+            dataIndex: 'club_name',
+            type: 'string',
+            width:100,
+        }, {
             title: '图片',
             dataIndex: 'image_url',
             type: 'image',

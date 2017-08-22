@@ -43,11 +43,6 @@ const Config = {
     sider: {
         menu: [
             {
-                title: '俱乐部管理',
-                key: 'admin-com',
-                icon: 'team',
-            },
-            {
                 title: '活动管理',
                 key: 'activity-com',
                 icon: 'environment',
@@ -79,7 +74,7 @@ const Config = {
                         {
                 title: '帮助',
                 key: 'help-com',
-                icon: 'user',
+                icon: 'help',
             },
             // {
             //     title: 'Table数据与功能展示',
@@ -174,7 +169,7 @@ const Config = {
         components: {
             'admin-com': {
                 title: '俱乐部会员管理，仅超级管理员可见',
-                component: require('./components/feature/Feature1-1')
+                component: require('./components/feature/feature-admin')
             }, 
             'activity-com': {
                 title: '活动管理',
@@ -266,6 +261,14 @@ const Config = {
         permission: BaiduInfo.permission,
         loginUrl: BaiduInfo.loginUrl
     }
+}
+
+if(getCookie('admin_id')==0){
+    Config.sider.menu.unshift({
+                title: '俱乐部管理',
+                key: 'admin-com',
+                icon: 'team',
+            });
 }
 
 export default Config;
