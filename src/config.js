@@ -52,20 +52,20 @@ const Config = {
                 key: 'activity-join-com',
                 icon: 'solution',
             },
-            {
-                title: '会员管理',
-                key: 'user-com',
-                icon: 'user',
-            },
-            {
-                title: '新增栏目',
-                key: 'note-com',
-                icon: 'file',
-                items: [
-                    {title: '旅游分享', key: 'Feature1-1'},
-                    {title: '每周一星', key: 'Feature1-1'},
-                ]
-            },
+            // {
+            //     title: '会员管理',
+            //     key: 'user-com',
+            //     icon: 'user',
+            // },
+            // {
+            //     title: '新增栏目',
+            //     key: 'note-com',
+            //     icon: 'file',
+            //     items: [
+            //         {title: '旅游分享', key: 'Feature1-1'},
+            //         {title: '每周一星', key: 'Feature1-1'},
+            //     ]
+            // },
             {
                 title: '个人中心',
                 key: 'center-com',
@@ -74,7 +74,7 @@ const Config = {
                         {
                 title: '帮助',
                 key: 'help-com',
-                icon: 'help',
+                icon: 'file',
             },
             // {
             //     title: 'Table数据与功能展示',

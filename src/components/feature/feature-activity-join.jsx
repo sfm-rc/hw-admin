@@ -192,35 +192,43 @@ const conf = {
 
     // 创建项目所需的字段 与 更新项目所需的字段
     // rules 规范可见 https://github.com/yiminghe/async-validator
-    CType: C_U_Type,
+    // CType: C_U_Type,
     UType: C_U_Type,
 
     // 查询
     // 可设置的查询字段
     RType:[
+        // {
+        //     name: 'id',
+        //     label: '唯一标识',
+        //     type: 'string',
+        //     placeholder: '请输入标示名称'
+        // },
         {
-            name: 'id',
-            label: '唯一标识',
-            type: 'string',
-            placeholder: '请输入标示名称'
-        },{
-            name: 'a_id',
+            name: 'activity_id',
             label: '活动ID',
             type: 'string'
         },{
-            name: 'u_name_alias',
+            name: 'user_name',
+            label: '全名',
+            type: 'string',
+        },
+        {
+            name: 'user_name_alias',
             label: '花名',
             type: 'string',
-        },{
-            name: 'u_mobile',
+        },
+        {
+            name: 'mobile',
             label: '会员手机',
             type: 'string',
-        },{
-            name: 'a_success',
-            label: '是否成行',
-            type: 'switch',
-            defaultValue: false
-        }
+        },
+        // {
+        //     name: 'a_success',
+        //     label: '是否成行',
+        //     type: 'switch',
+        //     defaultValue: false
+        // }
     ],
     RParams:{
 
