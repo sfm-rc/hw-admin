@@ -6,6 +6,9 @@ import FeatureSetConfig from '../common/FeatureSetConfig';
 import Immutable from 'immutable';
 import Reqwest from 'reqwest';
 import moment from 'moment';
+import QRCode from 'qrcode';
+import {Modal, Input, message, Button} from 'antd';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 const activity_types = ['徒步登山', '重装野营', '腐败娱乐', '休闲摄影', '玩车', '玩水', 
 '骑行', '速降', '攀爬', '探洞', '航空活动', '滑行', '球类', '垂钓捕捉', '体育赛事', '定向', '专业级', '限制级']
@@ -326,7 +329,26 @@ const conf = {
             {
                 text: '报名链接',
                 callback: function(item){
-                    console.log(item)
+                    const url = `http://lv.mobu.biz/user-hw/activity/join/${item.id}`;
+                    Modal.info({
+                        title: '报名链接',
+                        content: <div>
+                            <canvas id="join-canvas"></canvas>
+                            <Input value={url} />
+                            <CopyToClipboard text={url}
+                                             onCopy={() => {message.info('copy success')}}>
+                                <Button>Copy url</Button>
+                            </CopyToClipboard>
+                        </div>
+                    })
+                    window.setTimeout(()=>{
+                        const canvas = document.getElementById('join-canvas')
+                        console.info(canvas);
+                        QRCode.toCanvas(canvas, url, function (error) {
+                            if (error) console.error(error)
+                            console.log('success!');
+                        })
+                    }, 1000)
                 }
             }], // 可选
             fixed: 'right',
