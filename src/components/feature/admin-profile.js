@@ -5,6 +5,7 @@ const Option = Select.Option;
 const AutoCompleteOption = AutoComplete.Option;
 import Reqwest from 'reqwest';
 import uitil from '../../utils';
+import {message} from 'antd';
 
 
 import ChinaAddress from '../common/ChinaAddress';
@@ -90,7 +91,7 @@ class AdminProfile extends React.Component {
             contentType: 'application/json',
             success: (data) => {
                 console.log('get admin', data);
-                this.setState({adminData: data.data[0]});
+                message.info('更新成功', 5);
             }
         });
     }
