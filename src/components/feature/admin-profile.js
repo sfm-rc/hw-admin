@@ -50,7 +50,7 @@ class AdminProfile extends React.Component {
     }
     checkPassword = (rule, value, callback) => {
         const form = this.props.form;
-        if (value && value !== form.getFieldValue('password')) {
+        if (value && value !== form.getFieldValue('pwd')) {
             callback('Two passwords that you enter is inconsistent!');
         } else {
             callback();
@@ -155,7 +155,7 @@ class AdminProfile extends React.Component {
                     label="密码"
                     hasFeedback
                 >
-                    {getFieldDecorator('password', {
+                    {getFieldDecorator('pwd', {
                         initialValue: adminData.pwd,
                         rules: [{
                             required: true, message: '请输入密码',
