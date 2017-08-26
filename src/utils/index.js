@@ -53,15 +53,20 @@ export default {
         return pObj;
     },
      getAdminId: function () {
-         let adminId = getCookie('admin_id');
-         adminId = parseInt(adminId.slice(4))
-         // return adminId
-         if(adminId>-2){
-             return adminId;
-         }
-         else {
-             return -1000;
-         }
-
+        try {
+            let adminId = getCookie('admin_id');
+            adminId = parseInt(adminId.slice(4))
+            // return adminId
+            if(adminId>-2){
+                return adminId;
+            }
+            else {
+                return -1000;
+            }
+        }
+        catch (e){
+            console.error(e);
+            return -1000;
+        }
      }
 };
