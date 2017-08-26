@@ -9,6 +9,7 @@ import moment from 'moment';
 import QRCode from 'qrcode';
 import {Modal, Input, message, Button} from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import uitil from '../../utils';
 
 const activity_types = ['徒步登山', '重装野营', '腐败娱乐', '休闲摄影', '玩车', '玩水', 
 '骑行', '速降', '攀爬', '探洞', '航空活动', '滑行', '球类', '垂钓捕捉', '体育赛事', '定向', '专业级', '限制级']
@@ -95,9 +96,9 @@ const C_U_Type = [
         },
         {
             name: 'seq',
-            label: '优先级(0最低)',
+            label: '排序(0在最后)',
             type: 'string',
-            placeholder: '请输入领队花名优先级',
+            placeholder: '请输入排序',
             rules: [{ required: true, min: 1, message: '不要为空' }]
         },
         {
@@ -219,7 +220,7 @@ const conf = {
             title: 'ID',
             dataIndex: 'id',
             type: 'string',
-            width:30,
+            width:80,
             fixed:'left'
         }, {
             title: '活动名称',
@@ -366,7 +367,7 @@ const conf = {
         data.registrate_end_time = data.registrate_end_time.unix()
         data.start_time = data.start_time.unix()
         data.end_time = data.end_time.unix();
-        data.admin_id = getCookie('admin_id');
+        data.admin_id = uitil.getAdminId();
         data.success = 0;
         data.cur_num = 0;
         data.status = 'open';
@@ -494,7 +495,7 @@ const conf = {
             url: '/hw/activity/list_search',
             method:　'POST',
             data: JSON.stringify(Object.assign({
-                    "admin_id":getCookie('admin_id'),
+                    "admin_id":uitil.getAdminId(),
                     "pageIndex": num,
                     "limit": 10
                     }, params)),

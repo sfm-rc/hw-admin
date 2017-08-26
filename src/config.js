@@ -26,10 +26,13 @@
  *     loginUrl 无权限时跳转的链接（对于一些通用登入权限系统）
  */
 
+import uitil from './utils';
+import React from 'react';
+
 const Config = {
     header: {
         permission: BaiduInfo.permission,
-        title: '户外云平台',
+        title: <a href="/" style={{color: 'white'}}>户外云平台</a>,
         icon: 'appstore',
         style: {
             // backgroundColor: 'rgb(51, 51, 51)',
@@ -68,7 +71,7 @@ const Config = {
             // },
             {
                 title: '个人中心',
-                key: 'center-com',
+                key: 'admin-profile',
                 icon: 'user',
             },
                         {
@@ -161,12 +164,25 @@ const Config = {
 
         ],
         openKeys:['table','object','echarts','complex','customOperate'],
-        selectedKey: 'Feature1-1',
+        selectedKey: 'home',
         style: {}
     },
 
     main: {
         components: {
+            // 'admin-profile': {
+            //     title: '个人中心',
+            //     component: require('./components/feature/Feature-admin-profile')
+            // },
+
+            'home': {
+                title: '首页',
+                component: require('./components/feature/Feature-home')
+            },
+            'admin-profile': {
+              title: '个人中心',
+              component: require('./components/feature/admin-profile')
+            },
             'admin-com': {
                 title: '俱乐部会员管理，仅超级管理员可见',
                 component: require('./components/feature/feature-admin')
@@ -186,7 +202,12 @@ const Config = {
             'note-com': {
                 title: '游记分享',
                 component: require('./components/feature/Feature1-1')
-            }, 
+            },
+            'help-com': {
+                title: '帮组文档',
+                component: require('./components/feature/Feature-help')
+            },
+
             'bigset': {
                 title: 'bigset 测试',
                 component: require('./components/feature/Feature1-1')
@@ -263,7 +284,7 @@ const Config = {
     }
 }
 
-if(getCookie('admin_id')==0){
+if(uitil.getAdminId()==0){
     Config.sider.menu.unshift({
                 title: '俱乐部管理',
                 key: 'admin-com',

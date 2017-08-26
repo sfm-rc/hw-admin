@@ -233,6 +233,9 @@ module.exports = {
     'POST /hw/admin/update': 
     'http://127.0.0.1:3000',
 
+    'POST /hw/admin/get':
+        'http://127.0.0.1:3000',
+
     'GET /api/activity_join/list': function (req, res) {
         setTimeout(function () {
             res.json({

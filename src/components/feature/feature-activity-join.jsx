@@ -5,7 +5,10 @@ import FeatureSetConfig from '../common/FeatureSetConfig';
 
 import Immutable from 'immutable';
 import Reqwest from 'reqwest';
-
+import {Modal, Input,Button, message} from 'antd';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import QRCode from 'qrcode';
+import uitil from '../../utils';
 
 const C_U_Type = [
         {
@@ -90,7 +93,7 @@ const conf = {
     // },
 
     tableConfig: {
-        scroll: { x: 1500, y: 700 },
+        scroll: { x: 1400, y: 700 },
     },
 
     pageData: function(num, callback){
@@ -102,7 +105,7 @@ const conf = {
             title: 'ID',
             dataIndex: 'id',
             type: 'string',
-            width:30,
+            width:80,
             fixed:'left'
         }, 
         {
@@ -115,7 +118,7 @@ const conf = {
             title: '活动名称',
             dataIndex: 'title',
             type: 'string',
-            width:100,
+            width:200,
         }, 
         {
             title: '全名',
@@ -127,7 +130,7 @@ const conf = {
             title: '户外花名',
             dataIndex: 'user_name_alias',
             type: 'string',
-            width:100,
+            width:200,
         },
         {
             title: '性别',
@@ -140,13 +143,20 @@ const conf = {
             title: '手机',
             dataIndex: 'mobile',
             type: 'string',
-            width:100        },
+            width:200        },
         {
             title: '付款金额',
             dataIndex: 'down_payment',
             type: 'string',
             width:100,
             render:(text, item)=>text/100.0
+        },
+        {
+            title: '是否填写资料卡',
+            dataIndex: 'isZiliao',
+            type: 'string',
+            width:100,
+            render:(text, item)=>text==1?'是':'否'
         },
         // {
         //     title: '付款截图',
@@ -166,11 +176,38 @@ const conf = {
             title: '操作',
             type: 'operate',    // 操作的类型必须为 operate
             btns: [{
-                text: '更新',
-                type: 'update'
-            }], // 可选
+                text: '资料卡填写链接',
+                // type: 'ziliao',
+                callback: function(item){
+                    const url = `http://lv.mobu.biz/user-hw/profile/edit/${item.id}`;
+                    Modal.info({
+                        title: '资料卡填写链接',
+                        content: <div>
+                            <canvas id="join-canvas"></canvas>
+                            <Input value={url} />
+                            <CopyToClipboard text={url}
+                                             onCopy={() => {message.info('copy success')}}>
+                                <Button>Copy url</Button>
+                            </CopyToClipboard>
+                        </div>
+                    })
+                    window.setTimeout(()=>{
+                        const canvas = document.getElementById('join-canvas')
+                        console.info(canvas);
+                        QRCode.toCanvas(canvas, url, function (error) {
+                            if (error) console.error(error)
+                            console.log('success!');
+                        })
+                    }, 1000)
+                }
+            },
+            //     {
+            //     text: '更新',
+            //     type: 'update'
+            // }
+            ], // 可选
             fixed: 'right',
-            width:100,
+            width:120,
         },
     ],
     
@@ -270,7 +307,7 @@ const conf = {
             url: '/hw/join/list_search',
             method:　'POST',
             data: JSON.stringify(Object.assign({
-                    "admin_id":getCookie('admin_id'),
+                    "admin_id":uitil.getAdminId(),
                     "pageIndex": num,
                     "limit": 10
                     }, params)),

@@ -40,11 +40,11 @@ const C_U_Type = [
             label: '俱乐部名称',
             type: 'string'
         },
-        {
-            name: 'club_address',
-            label: '俱乐部地址',
-            type: 'string'
-        },
+        // {
+        //     name: 'club_address',
+        //     label: '俱乐部地址',
+        //     type: 'string'
+        // },
         {
             name: 'contact_name',
             label: '联系人',
@@ -134,7 +134,7 @@ const conf = {
     // },
 
     tableConfig: {
-        scroll: { x: 1030, y: 700 },
+        scroll: { x: 1600, y: 700 },
     },
 
     pageData: function(num, callback){
@@ -146,7 +146,7 @@ const conf = {
             title: 'ID',
             dataIndex: 'id',
             type: 'string',
-            width:30,
+            width:100,
             fixed:'left'
         }, {
             title: '管理员名称',
@@ -157,12 +157,12 @@ const conf = {
             title: '手机',
             dataIndex: 'mobile',
             type: 'string',
-            width:100,
+            width:200,
         },{
             title: '邮箱',
             dataIndex: 'email',
             type: 'string',
-            width:100,
+            width:200,
         },{
             title: '密码',
             dataIndex: 'pwd',
@@ -177,7 +177,7 @@ const conf = {
             title: '俱乐部地址',
             dataIndex: 'club_address',
             type: 'string',
-            width:100,
+            width:200,
         },{
             title: '联系人',
             dataIndex: 'contact_name',
@@ -187,12 +187,12 @@ const conf = {
             title: '联系人手机',
             dataIndex: 'contact_mobile',
             type: 'string',
-            width:100,
+            width:200,
         },{
             title: '联系人邮箱',
             dataIndex: 'contact_email',
             type: 'string',
-            width:100,
+            width:200,
         },{
             title: '操作',
             type: 'operate',    // 操作的类型必须为 operate
@@ -206,12 +206,13 @@ const conf = {
             //         console.log(item)
             //     }
             // },
-            {
-                text: '报名链接',
-                callback: function(item){
-                    console.log(item)
-                }
-            }], // 可选
+            // {
+            //     text: '报名链接',
+            //     callback: function(item){
+            //         console.log(item)
+            //     }
+            // }
+            ], // 可选
             fixed: 'right',
             width:100,
         },
@@ -319,6 +320,8 @@ const conf = {
                 let list = data.data;
                 list.forEach(function(ele) {
                     ele.key = ele.id;
+                    ele.club_address = `${ele.club_address_p||''}${ele.club_address_c||''}${ele.club_address_t||''}${ele.club_address_detail||''}`;
+
                     // ele.start_time =  moment(ele.start_time*1000).format('YYYY-MM-DD HH:mm');
                     // ele.end_time =  moment(ele.end_time*1000).format('YYYY-MM-DD HH:mm');
                     // ele.registrate_end_time =  moment(ele.registrate_end_time*1000).format('YYYY-MM-DD HH:mm');
