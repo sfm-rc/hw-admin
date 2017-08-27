@@ -22,6 +22,7 @@ let RForm = React.createClass({
                             <Button type="primary" onClick={this.handleRetrieve}>查询</Button>
                         </FormItem>
                     </Form>
+                    {this.props.addition}
                 </div>):
                 <div></div>;
     },

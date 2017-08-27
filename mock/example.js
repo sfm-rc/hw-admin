@@ -140,6 +140,8 @@ function createArrDate(data, times){
     return arr;
 }
 
+const serverUrl = 'http://127.0.0.1:3001';
+
 module.exports = {
 
     'GET /api/example': function (req, res) {
@@ -205,36 +207,51 @@ module.exports = {
 
 
     'POST /hw/activity/list_search': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/activity/add': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/activity/update': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
 
     'POST /hw/join/list_search': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
 
     'POST /hw/admin/login': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/admin/logout': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/admin/list_search': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/admin/add': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/admin/update': 
-    'http://127.0.0.1:3000',
+    serverUrl,
 
     'POST /hw/admin/get':
-        'http://127.0.0.1:3000',
+        serverUrl,
+
+    'POST /hw/insurance/list_search':
+        serverUrl,
+
+    'POST /hw/travelNote/list_search':
+    serverUrl,
+
+    'POST /hw/travelNote/add':
+    serverUrl,
+
+    'POST /hw/travelNote/update':
+    serverUrl,
+
+
+
 
     'GET /api/activity_join/list': function (req, res) {
         setTimeout(function () {

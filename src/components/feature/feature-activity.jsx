@@ -103,7 +103,7 @@ const C_U_Type = [
         },
         {
             name: 'price',
-            label: '费用(单位角)',
+            label: '费用(单位元)',
             type: 'string',
             placeholder: '请输入费用',
             rules: [{ required: true, min: 1, message: '不要为空' }]
@@ -281,6 +281,12 @@ const conf = {
             type: 'string',
             width:100,
         },{
+            title: '费用(单位元)',
+            dataIndex: 'price',
+            type: 'string',
+            width:100,
+            // render: (text, item)=>text/10.0
+        },{
             title: '名额',
             dataIndex: 'limit_num',
             type: 'string',
@@ -408,6 +414,7 @@ const conf = {
                 data.start_time =  moment(data.start_time*1000).format('YYYY-MM-DD HH:mm');
                 data.end_time =  moment(data.end_time*1000).format('YYYY-MM-DD HH:mm');
                 data.registrate_end_time =  moment(data.registrate_end_time*1000).format('YYYY-MM-DD HH:mm');
+                data.price = data.price*10;
                 callback(data);
             }
         });
@@ -508,6 +515,7 @@ const conf = {
                     ele.start_time =  moment(ele.start_time*1000).format('YYYY-MM-DD HH:mm');
                     ele.end_time =  moment(ele.end_time*1000).format('YYYY-MM-DD HH:mm');
                     ele.registrate_end_time =  moment(ele.registrate_end_time*1000).format('YYYY-MM-DD HH:mm');
+                    ele.price = ele.price/10.0;
                 });
                 callback(list, {
                     total: data.pagination.total,

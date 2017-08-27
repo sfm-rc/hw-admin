@@ -55,6 +55,26 @@ const Config = {
                 key: 'activity-join-com',
                 icon: 'solution',
             },
+            {
+                title: '个人资料卡',
+                key: 'insurance-com',
+                icon: 'database',
+            },
+            {
+                title: '保险',
+                key: 'bao-xian',
+                icon: 'save',
+            },
+            {
+                title: '游记分享',
+                key: 'share-com',
+                icon: 'camera-o',
+            },
+            {
+                title: '每月一星',
+                key: 'star-com',
+                icon: 'star',
+            },
             // {
             //     title: '会员管理',
             //     key: 'user-com',
@@ -194,13 +214,27 @@ const Config = {
             'activity-join-com': {
                 title: '活动报名',
                 component: require('./components/feature/feature-activity-join')
-            }, 
+            },
+            'insurance-com': {
+                title: '资料卡管理',
+                component: require('./components/feature/feature-insurance')
+            },
+            'bao-xian': {
+                title: '保险',
+                component: require('./components/feature/bao-xian')
+            },
+
+            'share-com': {
+                title: '游记分享',
+                component: require('./components/feature/feature-note')
+            },
+
+            'star-com': {
+                title: '每月一星',
+                component: require('./components/feature/feature-note')
+            },
             'user-com': {
                 title: '会员管理',
-                component: require('./components/feature/Feature1-1')
-            }, 
-            'note-com': {
-                title: '游记分享',
                 component: require('./components/feature/Feature1-1')
             },
             'help-com': {

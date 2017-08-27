@@ -43,7 +43,7 @@ let CFormItem = React.createClass({
                 break;
 
             case 'date':
-                defaultValue = moment(defaultValue || DefaultTime, "YYYY-MM-DD hh:mm:ss");
+                defaultValue = moment(defaultValue || DefaultTime, "YYYY-MM-DD HH");
 
                 return <FormItem
                             label={item.label}
@@ -51,7 +51,8 @@ let CFormItem = React.createClass({
                             {...formItemLayout}>
 
                             {getFieldDecorator(item.name, { initialValue: defaultValue})(
-                                <DatePicker showTime format="YYYY-MM-DD hh:mm:ss" />
+                                <DatePicker showTime={{ defaultValue: moment('00', 'HH'), format: 'HH' }}
+                                            format="YYYY-MM-DD HH" />
                             )}
                         </FormItem>
                 break;

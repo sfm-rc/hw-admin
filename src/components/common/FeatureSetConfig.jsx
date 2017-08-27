@@ -80,9 +80,9 @@ const FeatureSet = (config) => {
                 {...this.state.tableConfig}
                 />;
             }
-            
+            config.get_RType_addition = config.get_RType_addition || (()=>{});
             return  <div className={this.props.className}>
-                        <RForm RType={config.RType} submit={self.handleRetrieve}/>
+                        <RForm RType={config.RType} addition={config.get_RType_addition()} submit={self.handleRetrieve}/>
                         <CForm CType={config.CType} submit={self.handleCreate}/>
                         <UForm UType={config.UType} submit={self.handleUpdate} isShow={this.state.updateFromShow} updateItem={this.state.updateFromItem} hideForm={this.hideUpdateForm}/>
                         {table}

@@ -4,7 +4,7 @@
     "index": "./src/index.js"
   },
   "dependencies": {
-    "antd": "^2.3.0",
+    "antd": "^2.12.7",
     "babel-plugin-import": "^1.0.1",
     "bce-sdk-js": "^0.1.7",
     "components": "^0.1.0",
