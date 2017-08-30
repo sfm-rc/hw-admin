@@ -95,7 +95,7 @@ const Config = {
                 icon: 'user',
             },
                         {
-                title: '帮助',
+                title: '帮助文档',
                 key: 'help-com',
                 icon: 'file',
             },
@@ -238,7 +238,7 @@ const Config = {
                 component: require('./components/feature/Feature1-1')
             },
             'help-com': {
-                title: '帮组文档',
+                title: '帮助文档',
                 component: require('./components/feature/Feature-help')
             },
 

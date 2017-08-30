@@ -215,8 +215,13 @@ module.exports = {
     'POST /hw/activity/update': 
     serverUrl,
 
+    'POST /hw/activity/update_show':
+    serverUrl,
 
     'POST /hw/join/list_search': 
+    serverUrl,
+
+    'POST /hw/join/update_success':
     serverUrl,
 
 
@@ -250,6 +255,8 @@ module.exports = {
     'POST /hw/travelNote/update':
     serverUrl,
 
+    'POST /hw/travelNote/update_show':
+    serverUrl,
 
 
 

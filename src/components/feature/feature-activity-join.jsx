@@ -176,6 +176,28 @@ const conf = {
             title: '操作',
             type: 'operate',    // 操作的类型必须为 operate
             btns: [{
+                render: (txt, r, self) => {
+                    const show = (r, self) => {
+                        const data = {id: r.id, is_success: !r.is_success?1:0};
+                        Reqwest({
+                            url: '/hw/join/update_success',
+                            method:　'POST',
+                            data: JSON.stringify(data),
+                            type: 'json',
+                            contentType: 'application/json',
+                            success: function (res) {
+                                self.state.resultList.map(item=>{
+                                    if(item.id == r.id){
+                                        item.is_success = !item.is_success?1:0;
+                                    }
+                                });
+                                self.setState({resultList:self.state.resultList});
+                            }
+                        });
+                    }
+                    return <a onClick={()=>show(r, self)}>{r.is_success?'取消':'成功'}</a>
+                },
+            },{
                 text: '资料卡填写链接',
                 // type: 'ziliao',
                 callback: function(item){
@@ -207,7 +229,7 @@ const conf = {
             // }
             ], // 可选
             fixed: 'right',
-            width:120,
+            width:200,
         },
     ],
     

@@ -6,9 +6,9 @@ import FeatureSetConfig from '../common/FeatureSetConfig';
 import Immutable from 'immutable';
 import Reqwest from 'reqwest';
 import moment from 'moment';
-import QRCode from 'qrcode';
 import {Modal, Input, message, Button} from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import QRCode from 'qrcode';
 import uitil from '../../utils';
 
 const activity_types = ['徒步登山', '重装野营', '腐败娱乐', '休闲摄影', '玩车', '玩水', 
@@ -178,6 +178,7 @@ const C_U_Type = [
 
     ];
 
+
 const conf = {
     
     type: 'tableList', 
@@ -208,7 +209,7 @@ const conf = {
     // },
 
     tableConfig: {
-        scroll: { x: 1700, y: 700 },
+        scroll: { x: 2200, y: 700 },
     },
 
     pageData: function(num, callback){
@@ -220,7 +221,7 @@ const conf = {
             title: 'ID',
             dataIndex: 'id',
             type: 'string',
-            width:80,
+            width:100,
             fixed:'left'
         }, {
             title: '活动名称',
@@ -320,13 +321,42 @@ const conf = {
             render: (text, item)=><span>{status_map[text]}</span>,
             width:100,
         },
+        // {
+        //     title: '隐藏／展示',
+        //     dataIndex: 'is_show',
+        //     render: (text, r)=>!r.is_show?'隐藏':'展示',
+        //     width:100,
+        // },
         {
             title: '操作',
             type: 'operate',    // 操作的类型必须为 operate
             btns: [{
                 text: '更新',
                 type: 'update'
+            }, {
+                render: (txt, r, self) => {
+                    const show = (r, self) => {
+                        const data = {id: r.id, is_show: !r.is_show?1:0};
+                        Reqwest({
+                            url: '/hw/activity/update_show',
+                            method:　'POST',
+                            data: JSON.stringify(data),
+                            type: 'json',
+                            contentType: 'application/json',
+                            success: function (res) {
+                                self.state.resultList.map(item=>{
+                                    if(item.id == r.id){
+                                        item.is_show = !item.is_show?1:0;
+                                    }
+                                });
+                                self.setState({resultList:self.state.resultList});
+                            }
+                        });
+                    }
+                    return <a onClick={()=>show(r, self)}>{r.is_show?'隐藏':'展示'}</a>
+                },
             },
+
             // {
             //     text: '下架',
             //     callback: function(item){
@@ -359,9 +389,10 @@ const conf = {
                 }
             }], // 可选
             fixed: 'right',
-            width:100,
+            width:200,
         },
     ],
+
     
     // 模拟添加数据的接口 回调
     Create: function(data, callback){
@@ -423,7 +454,33 @@ const conf = {
         // data.key =  data.id;
         // callback(data);
     },
-  
+    getCode: function(item){
+        const admin_id = uitil.getAdminId()
+        const url = `http://lv.mobu.biz/user-hw/activity/list/${admin_id}`;
+        Modal.info({
+            title: '',
+            content: <div>
+                <canvas id="activity-canvas"></canvas>
+                <Input value={url} />
+                <CopyToClipboard text={url}
+                                 onCopy={() => {message.info('copy success')}}>
+                    <Button>Copy url</Button>
+                </CopyToClipboard>
+            </div>
+        })
+        window.setTimeout(()=>{
+            const canvas = document.getElementById('activity-canvas')
+            console.info(canvas);
+            QRCode.toCanvas(canvas, url, function (error) {
+                if (error) console.error(error)
+                console.log('success!');
+            })
+        }, 1000)
+    },
+
+    get_RType_addition: function(){
+        return <Button onClick={()=>this.getCode()} >获取活动列表链接</Button>
+    },
 
     // 创建项目所需的字段 与 更新项目所需的字段
     // rules 规范可见 https://github.com/yiminghe/async-validator

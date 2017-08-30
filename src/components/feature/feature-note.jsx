@@ -124,7 +124,7 @@ const conf = {
     // },
 
     tableConfig: {
-        scroll: { x: 1400, y: 700 },
+        scroll: { x: 1900, y: 700 },
     },
 
     pageData: function(num, callback){
@@ -136,7 +136,7 @@ const conf = {
             title: 'ID',
             dataIndex: 'id',
             type: 'string',
-            width:80,
+            width:100,
             fixed:'left'
         },
         {
@@ -203,9 +203,31 @@ const conf = {
             btns: [{
                 text: '更新',
                 type: 'update'
+            },{
+                render: (txt, r, self) => {
+                    const show = (r, self) => {
+                        const data = {id: r.id, is_show: !r.is_show?1:0};
+                        Reqwest({
+                            url: '/hw/travelNote/update_show',
+                            method:　'POST',
+                            data: JSON.stringify(data),
+                            type: 'json',
+                            contentType: 'application/json',
+                            success: function (res) {
+                                self.state.resultList.map(item=>{
+                                    if(item.id == r.id){
+                                        item.is_show = !item.is_show?1:0;
+                                    }
+                                });
+                                self.setState({resultList:self.state.resultList});
+                            }
+                        });
+                    }
+                    return <a onClick={()=>show(r, self)}>{r.is_show?'隐藏':'展示'}</a>
+                },
             }],
             fixed: 'right',
-            width:100,
+            width:200,
         }
         // {
         //     title: '操作',

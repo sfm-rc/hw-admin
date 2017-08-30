@@ -124,7 +124,7 @@ const FeatureSet = (config) => {
                                         }else if( btn.render ){
                                             return (
                                                 <span key={i}>
-                                                    {btn.render(txt, record)}
+                                                    {btn.render(txt, record, self)}
                                                     {i!==btns.length-1?<span className="ant-divider"></span>:''}
                                                 </span>
                                             );
@@ -274,7 +274,7 @@ const FeatureSet = (config) => {
 
                
             }else if(btn.callback){
-                btn.callback(item);
+                btn.callback(item, self);
             }
         },
 

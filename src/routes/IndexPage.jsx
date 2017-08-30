@@ -74,7 +74,7 @@ class App extends React.Component{
                                     <Main {...mainInfo} {...featureInfo}/>
                                 </Layout.Content>       
                                 <Layout.Footer style={{ textAlign: 'center' }}>
-                                    Outdoor cloud platform ©2017 Created Jing Gang
+                                    Outdoor cloud platform ©2017 Created 魔步户外
                                 </Layout.Footer>  
                             </Layout>   
                         </Layout>
