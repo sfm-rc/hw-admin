@@ -5,11 +5,13 @@ import FeatureSetConfig from '../common/FeatureSetConfig';
 
 import Immutable from 'immutable';
 import Reqwest from 'reqwest';
-import {Modal, Input,Button, message} from 'antd';
+import {Modal, Input,Button, message, Row, Col} from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import QRCode from 'qrcode';
 import uitil from '../../utils';
 import moment from 'moment';
+import ExportJsonExcel from 'js-export-excel';
+import Enumerable from 'linq';
 
 const C_U_Type = [
         {
@@ -271,6 +273,50 @@ const conf = {
     ],
     RParams:{
 
+    },
+
+    export:function(){
+        message.loading('下载中', 1000);
+        this.RequestData(Object.assign(this.RParams, {num: 1, limit: 100000}), (list, conf)=>{
+            message.destroy();
+            console.info(list);
+            const option={};
+
+            option.fileName = `资料卡表-${moment().format('YYYY-MM-DD')}`;
+            const data = Enumerable.from(list).select((x)=>{
+                return {
+                    user_name: x['user_name'],
+                    cer_type: x['cer_type']=='id_card'?'身份证':'护照',
+                    cer_id: x['cer_id'],
+                    sex: x['sex']==0?'女':'男',
+                    birth: moment(x['birth']).format('YYYY-MM-DD'),
+                    mobile: x['mobile'],
+                    e_contact: x['e_contact'],
+                    e_contact_mobile: x['e_contact_mobile'],
+                }
+            }).toArray();
+            option.datas=[
+                {
+                    sheetData:data,
+                    sheetName:'sheet',
+                    // sheetFilter:[],
+                    sheetHeader:['全名', '证件类型','证件号码', '性别', '出生日期', '手机号码', '紧急联系人', '紧急联系人手机' ]
+                }
+            ];
+
+            const toExcel = new ExportJsonExcel(option); //new
+            toExcel.saveExcel(); //保存
+
+        });
+
+    },
+
+    get_RType_addition: function () {
+        return <Row>
+            <Col span={8} offset={15}>
+                <Button style={{float:'right'}} onClick={()=>this.export()} >导出到EXCEL</Button>
+            </Col>
+        </Row>
     },
 
     // 查询操作回调

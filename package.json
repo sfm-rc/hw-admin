@@ -12,6 +12,8 @@
     "echarts-for-react": "^1.1.5",
     "font": "0.0.4",
     "immutable": "^3.8.1",
+    "js-export-excel": "^1.0.3",
+    "linq": "^3.0.9",
     "moment": "^2.18.1",
     "qrcode": "^0.9.0",
     "react": "^15.6.1",

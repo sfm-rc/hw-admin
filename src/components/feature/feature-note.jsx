@@ -57,7 +57,8 @@ const C_U_Type = [
     {
         name: 'start_date',
         label: '活动开始时间',
-        type: 'date'
+        type: 'date',
+        rules: [{ required: true, min: 1, message: '不要为空' }]
     },
 
     // {
