@@ -9,7 +9,7 @@ import {Modal, Input,Button, message, Row, Col } from 'antd';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import QRCode from 'qrcode';
 import uitil from '../../utils';
-import ExportJsonExcel from 'js-export-excel';
+import ExportJsonExcel from '../common/json-export-excel';
 import moment from 'moment';
 import Enumerable from 'linq';
 

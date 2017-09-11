@@ -10,7 +10,7 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 import QRCode from 'qrcode';
 import uitil from '../../utils';
 import moment from 'moment';
-import ExportJsonExcel from 'js-export-excel';
+import ExportJsonExcel from '../common/json-export-excel';
 import Enumerable from 'linq';
 
 const C_U_Type = [
