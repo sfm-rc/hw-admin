@@ -48,7 +48,7 @@ add-dom-event-listener@1.x:
   dependencies:
     object-assign "4.x"
 
-adler-32@:
+adler-32@, adler-32@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/adler-32/download/adler-32-1.1.0.tgz#03551a5c7f0edfbd4fc8fa12a6814978eab651c3"
   dependencies:
@@ -1236,6 +1236,13 @@ cfb@~0.11.0:
   dependencies:
     commander ""
 
+cfb@~0.12.1:
+  version "0.12.1"
+  resolved "https://registry.npmjs.org/cfb/-/cfb-0.12.1.tgz#57fadfa9fc31409b2ca58a4109ecaaac5ad1a4ec"
+  dependencies:
+    commander "~2.11.0"
+    printj "~1.1.0"
+
 chai@~3.5.0:
   version "3.5.0"
   resolved "http://registry.npm.taobao.org/chai/download/chai-3.5.0.tgz#4d02637b067fe958bdbfdd3a40ec56fef7373247"
@@ -1313,7 +1320,7 @@ code-point-at@^1.0.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
 
-codepage@:
+codepage@, codepage@~1.11.0:
   version "1.11.0"
   resolved "http://registry.npm.taobao.org/codepage/download/codepage-1.11.0.tgz#1076095b9f03b5ca04f43873fa1a627742285de2"
   dependencies:
@@ -1487,7 +1494,7 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/core-util-is/download/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
-crc-32@:
+crc-32@, crc-32@~1.1.0:
   version "1.1.0"
   resolved "http://registry.npm.taobao.org/crc-32/download/crc-32-1.1.0.tgz#301ef4a1c2217adc8463b6e6e96c4e44310e10c7"
   dependencies:
@@ -2148,6 +2155,12 @@ formatio@1.1.1:
 frac@0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/frac/download/frac-0.3.1.tgz#577677b7fdcbe6faf7c461f1801d34137cda4354"
+
+frac@~1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/frac/-/frac-1.1.0.tgz#dc437e9c6a646b60b127d82ac4902464445cc1e3"
+  dependencies:
+    voc "~1.0.0"
 
 fresh@^0.3.0:
   version "0.3.0"
@@ -4972,6 +4985,12 @@ src@^1.1.2:
     underscore "~1.6.0"
     uuid "~1.4.1"
 
+ssf@~0.10.1:
+  version "0.10.1"
+  resolved "https://registry.npmjs.org/ssf/-/ssf-0.10.1.tgz#f23d82b63792ef56089089c1cd0c848e911cdba6"
+  dependencies:
+    frac "~1.1.0"
+
 ssf@~0.8.1:
   version "0.8.2"
   resolved "http://registry.npm.taobao.org/ssf/download/ssf-0.8.2.tgz#b9d4dc6a1c1bcf76f8abfa96d7d7656fb2abecd6"
@@ -5473,6 +5492,18 @@ wrappy@1:
 write-file-stdout@0.0.2, write-file-stdout@^0.0.2:
   version "0.0.2"
   resolved "http://registry.npm.taobao.org/write-file-stdout/download/write-file-stdout-0.0.2.tgz#c252d7c7c5b1b402897630e3453c7bfe690d9ca1"
+
+xlsx@^0.11.3:
+  version "0.11.3"
+  resolved "https://registry.npmjs.org/xlsx/-/xlsx-0.11.3.tgz#d5394137d5d1a65b046bbe41c2a4d7468af8670b"
+  dependencies:
+    adler-32 "~1.1.0"
+    cfb "~0.12.1"
+    codepage "~1.11.0"
+    commander "~2.11.0"
+    crc-32 "~1.1.0"
+    exit-on-epipe "~1.0.1"
+    ssf "~0.10.1"
 
 xlsx@^0.8.1:
   version "0.8.8"
